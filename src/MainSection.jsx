@@ -15,7 +15,7 @@ const MainSection = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default MainSection;
