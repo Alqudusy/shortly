@@ -14,6 +14,18 @@ const NavBar = () => {
                 <button className="login">Login</button>
                 <button className="signup">Sign Up</button>
             </div>
+            <i className="fa-solid fa-bars"></i>
+            <div className="mobile-nav-bar">
+                <ul className="mobile-nav-links">
+                  <li>Features</li>
+                  <li>Pricing</li>
+                  <li>Resources</li>
+                </ul>
+                <div>
+                    <button className="login">Login</button>
+                    <button className="signup">Sign Up</button>
+                </div>
+            </div>
         </div>
     );
 }
