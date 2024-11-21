@@ -1,7 +1,7 @@
 const Heading = () => {
     return(
         <div className='statistical-headings'>
-            <h2>Advancd stactistics</h2>
+            <h2>Advanced stactistics</h2>
             <p>Track how your links are performing accross the web with our Advanced statistics dashboard</p>
         </div>
     );

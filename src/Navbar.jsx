@@ -1,5 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import MobileNavBar from "./MobileNavBar";
+import HamburgerIcon from "./HamburgerIcon";
 const NavBar = () => {
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const toggleNav = () => {
+        setIsNavOpen(prevState => !prevState);
+    }
+
+
     return (
         <div className="nav-container">
             <div className="logo-and-links">
@@ -14,18 +23,8 @@ const NavBar = () => {
                 <button className="login">Login</button>
                 <button className="signup">Sign Up</button>
             </div>
-            <i className="fa-solid fa-bars"></i>
-            <div className="mobile-nav-bar">
-                <ul className="mobile-nav-links">
-                  <li>Features</li>
-                  <li>Pricing</li>
-                  <li>Resources</li>
-                </ul>
-                <div>
-                    <button className="login">Login</button>
-                    <button className="signup">Sign Up</button>
-                </div>
-            </div>
+            <HamburgerIcon toggleNav={toggleNav} />
+            <MobileNavBar isNavOpen={isNavOpen} />
         </div>
     );
 }
