@@ -22,8 +22,7 @@ const HandleSignUp = () => {
         Cookies.set("userEmail", userCredential.user.email, { expires: 7 });
         Cookies.set("LoggedIn", true, { expires: 7 });
   
-        // Redirect to the home page after signing up
-        window.location.reload(); // Reload to trigger the state update in the App component
+        window.location.reload();
       } catch (error) {
         console.error("Error Signing up:", error.message);
         setError(error.message);
