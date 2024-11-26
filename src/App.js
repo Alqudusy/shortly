@@ -7,19 +7,43 @@ import FooterSection from './FooterSection';
 import LinkContainer from './LinkContainer';
 import Cookies from "js-cookie";
 import './styles.css';
-import HandleSignUp from "./HandleSignUp";
+import AuthForm from "./AuthForm";
+import GetUrlFromFireStore from "./GetUrlFromFireStore";
 
 function App() {
+  const [userUrls, setUserUrls] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const userToken = Cookies.get("userToken");
 
+  // Fetch user URLs when the component mounts or when userToken changes
   useEffect(() => {
-    const loggedIn = Cookies.get("LoggedIn") === "true"; // Correct cookie name and conversion
-    if (loggedIn) {
-      setIsLoggedIn(true);
-    }
-  }, []); // Runs once when the component mounts
+    const fetchUrls = async () => {
+      try {
+        setIsLoading(true);
+        const urls = await GetUrlFromFireStore(userToken);
+        setUserUrls(urls);
+      } catch (err) {
+        setError("Failed to fetch URLs.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
+    if (userToken) {
+      fetchUrls();
+    }
+  }, [userToken]);
+
+  // Check if user is logged in based on the cookie
+  useEffect(() => {
+    const loggedIn = Cookies.get("LoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+  }, []);
+
+  // Handle redirection based on shortId in URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const shortId = params.get("shortId");
@@ -35,11 +59,12 @@ function App() {
         })
         .then((data) => {
           const destination = data.destination;
-          console.log(destination);
-          window.location.href = destination;
+          setTimeout(() => {
+            window.location.href = destination;
+          }, 1000); // Show a 1-second delay before redirecting
         })
         .catch((error) => {
-          console.error("Error:", error.message);
+          setError("Error: " + error.message);
           setIsRedirecting(false);
         });
     }
@@ -54,10 +79,18 @@ function App() {
       <div className="App">
         <MainSecton />
         <UrlInputForm />
-        <LinkContainer
-          real="https://www.linkedin.com/company/frontend-mentor"
-          shortened="https://rel.ink/gob3X9"
-        />
+        {error && <p className="error">{error}</p>}
+        {userUrls.length > 0 ? (
+          userUrls.map((url, index) => (
+            <LinkContainer 
+              key={`${url.shortUrl}-${index}`} 
+              real={url.realUrl} 
+              shortened={url.shortUrl} 
+            />
+          ))
+        ) : (
+          <p>No URLs saved yet. Start by adding one!</p>
+        )}
         <StatisticalSection />
         <BoostYourLinkSection />
         <FooterSection />
@@ -67,7 +100,7 @@ function App() {
 
   return (
     <div className="App">
-      <HandleSignUp />
+      <AuthForm />
     </div>
   );
 }

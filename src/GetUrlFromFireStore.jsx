@@ -1,21 +1,25 @@
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "./firebase-config"; // Import Firestore db instance
 
-const db = getFirestore;
-
-const GetUrlFromFireStore = async (userId) => {
+const GetAllUrlsFromFirestore = async (userId) => {
     try {
-        const docRef = doc(db, "userArrays", userId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            console.log(data.arrayField);
-            return data.arrayField;
+        const docRef = doc(db, "shortlyUser", userId); // Reference to the user's document
+        const docSnapshot = await getDoc(docRef); // Fetch the document
+
+        if (docSnapshot.exists()) {
+            // Retrieve the arrayField safely
+            const data = docSnapshot.data();
+            const urlArray = data?.arrayField || []; // Fallback to an empty array if undefined
+            console.log("Retrieved URL objects:", urlArray);
+            return urlArray;
         } else {
-            console.log("No data found for the user");
+            console.log("No document found for this user.");
+            return []; // Return an empty array if no document exists
         }
     } catch (error) {
-        console.error(`Cannot get User Url now`);
+        console.error("Error retrieving URLs:", error);
+        return []; // Return an empty array in case of an error
     }
-}
+};
 
-export default GetUrlFromFireStore;
+export default GetAllUrlsFromFirestore;

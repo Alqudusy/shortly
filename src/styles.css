@@ -308,6 +308,94 @@ body {
 .fa-solid {
     display: none;
 }
+/* General Container */
+.auth-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .auth-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Form */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .auth-form label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .auth-form input:focus {
+    border-color: #2bd0d0;
+    outline: none;
+    box-shadow: 0px 0px 3px #2bd0d0;
+  }
+  
+  /* Buttons */
+  .auth-form button {
+    background-color: #2bd0d0;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .auth-form button:hover {
+    background-color: #26b1b1;
+  }
+  
+  /* Messages */
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .success-message {
+    color: green;
+    font-size: 14px;
+  }
+  
+  /* Toggle Link */
+  .toggle-form {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .toggle-form .link {
+    color: #2bd0d0;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .toggle-form .link:hover {
+    text-decoration: underline;
+  }
+  
 @media (max-width: 652px) {
     .nav-links {
         display: none;
