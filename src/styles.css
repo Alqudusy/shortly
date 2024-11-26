@@ -544,6 +544,9 @@ body {
         gap: 1rem;
         text-align: center;
     }
+    .footer-container .social {
+        width: 100%;
+    }
 }
 
 button:hover {

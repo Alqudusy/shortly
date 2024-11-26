@@ -16,7 +16,7 @@ const UrlInputForm = () => {
             setError("Please enter a URL.");
             return;
         }
-        const urlPattern = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+        const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(\/[^\s]*)?(\?[^\s]*)?(#[^\s]*)?$/;
         if (!urlPattern.test(urlInput)) {
             setError("Please enter a valid URL.");
             return;
