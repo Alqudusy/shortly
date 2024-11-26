@@ -44,7 +44,7 @@ const UrlInputForm = () => {
 
             console.log("URL shortened and saved successfully!");
             setUrlInput("");// Reset input field
-            location.reload();
+            window.location.href = window.location.href;
         } catch (err) {
             alert(err);
             setError(err.message || "An error occurred.");
