@@ -408,6 +408,9 @@ body {
         font-size: 25px;
         cursor: pointer;
     }
+    .boost-link h2 {
+        text-align: center;
+    }
     .mobile-nav-bar {
         display: flex;
         flex-direction: column;
@@ -544,6 +547,5 @@ body {
 }
 
 button:hover {
-    cursor: pointer;
     background-color: #9AE3E3;
 }

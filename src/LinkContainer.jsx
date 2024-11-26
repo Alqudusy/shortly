@@ -1,3 +1,5 @@
+import React from "react";
+
 const LinkContainer = ({ real, shortened }) => {
     // Ensure the URL starts with "http://" or "https://"
     const formatUrl = (url) => {
@@ -5,6 +7,17 @@ const LinkContainer = ({ real, shortened }) => {
             return `https://${url}`;
         }
         return url;
+    };
+
+    // Function to copy the shortened URL to the clipboard
+    const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                alert("Shortened URL copied to clipboard!");
+            })
+            .catch((error) => {
+                console.error("Failed to copy text:", error);
+            });
     };
 
     return (
@@ -36,7 +49,12 @@ const LinkContainer = ({ real, shortened }) => {
                         {shortened}
                     </a>
                 </p>
-                <button className="copy-button">Copy</button>
+                <button 
+                    className="copy-button" 
+                    onClick={() => copyToClipboard(shortened)}
+                >
+                    Copy
+                </button>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://short-xish.onrender.com", // Replace with the correct API base URL
+  baseURL: "https://short-xish.onrender.com/api", // Replace with the correct API base URL
 });
 
 // Create a shortened URL
