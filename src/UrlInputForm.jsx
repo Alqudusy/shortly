@@ -43,9 +43,10 @@ const UrlInputForm = () => {
             await SaveUrlToFireStore(userId, { realUrl: urlInput, shortUrl: fullShortUrl });
 
             console.log("URL shortened and saved successfully!");
-            setUrlInput(""); // Reset input field
+            setUrlInput("");// Reset input field
+            location.reload();
         } catch (err) {
-            console.log(err);
+            alert(err);
             setError(err.message || "An error occurred.");
         } finally {
             setLoading(false);
