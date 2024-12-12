@@ -12,7 +12,7 @@ A simple and efficient link shortener web application that allows users to gener
 
 ## Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript, React (if applicable)
+- **Frontend**: HTML, CSS, JavaScript, React
 - **Backend**: Firebase Firestore (Database)
 - **Styling**: Bootstrap or custom CSS
 
