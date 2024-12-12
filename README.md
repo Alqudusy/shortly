@@ -14,7 +14,7 @@ A simple and efficient link shortener web application that allows users to gener
 
 - **Frontend**: HTML, CSS, JavaScript, React
 - **Backend**: Firebase Firestore (Database)
-- **Styling**: Bootstrap or custom CSS
+- **Styling**: custom CSS
 
 ## Installation and Setup
 
